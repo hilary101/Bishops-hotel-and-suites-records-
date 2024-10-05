@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISHOPS HOTEL AND SUITES - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background: #0033cc;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            background: #0044cc;
+            border-radius: 5px;
+            margin: 0 3px;
+            transition: background 0.3s;
+            flex: 1 0 auto; /* Allow links to grow/shrink */
+            max-width: 100px; /* Limit the maximum width of each link */
+        }
+
+        nav a:hover {
+            background-color: #002288;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .info, .reviews {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .review {
+            background-color: #e0f7fa;
+            border: 1px solid #b2ebf2;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: none; /* Hide reviews by default */
+        }
+
+        .review.active {
+            display: block; /* Show active review */
+        }
+
+        .stars {
+            color: #ffcc00;
+            font-size: 1.2em;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0044cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #0033aa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BISHOPS HOTEL AND SUITES</h1>
+    <nav>
+        <a href="index.html">Start</a>
+        <a href="home.html">Home</a>
+        <a href="lodging.html">Lodging</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="records.html">Records</a>
+    </nav>
+</header>
+    <div class="content">
+        <section class="info">
+            <h2>HOTEL INFORMATION</h2>
+            <p>Total Rooms: 30</p>
+            <p id="booked-rooms">Booked Rooms: 0</p>
+            <p id="available-rooms">Available Rooms: 30</p>
+        </section>
+        
+        <section class="reviews">
+            <h2>GUEST REVIEWS</h2>
+            <div id="reviews">
+                <!-- Reviews will be dynamically inserted here -->
+            </div>
+        </section>
+        <a href="javascript:history.back()" class="back-button">Back</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateRoomInfo();
+            updateReviews();
+        });
+
+        function updateReviews() {
+            const reviews = [
+                "Great stay! The rooms were clean and the staff was very friendly.",
+                "I loved the ambiance and the service was excellent.",
+                "The hotel exceeded my expectations. Highly recommended!",
+                "Wonderful experience. The room was comfortable and well-maintained.",
+                "Fantastic service and great location. Will definitely come back!"
+            ];
+
+            const reviewsContainer = document.getElementById('reviews');
+
+            reviews.forEach((review, index) => {
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'review';
+                reviewElement.innerHTML = `<span class="stars">★★★★★</span><br>${review}`;
+                reviewsContainer.appendChild(reviewElement);
+            });
+
+            let currentReviewIndex = 0;
+            const reviewElements = document.querySelectorAll('.review');
+            reviewElements[currentReviewIndex].classList.add('active');
+
+            setInterval(() => {
+                reviewElements[currentReviewIndex].classList.remove('active');
+                currentReviewIndex = (currentReviewIndex + 1) % reviewElements.length;
+                reviewElements[currentReviewIndex].classList.add('active');
+            }, 4000); // Change review every 4 seconds
+        }
+
+        function updateRoomInfo() {
+            const rooms = JSON.parse(localStorage.getItem('rooms')) || {};
+            const totalRooms = 30;
+            let bookedRooms = 0;
+
+            for (const status of Object.values(rooms)) {
+                if (status === 'red') bookedRooms++;
+            }
+
+            document.getElementById('booked-rooms').textContent = `Booked Rooms: ${bookedRooms}`;
+            document.getElementById('available-rooms').textContent = `Available Rooms: ${totalRooms - bookedRooms}`;
+        }
+    </script>
+</body>
+</html>

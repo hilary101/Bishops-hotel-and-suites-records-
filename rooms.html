@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms - Bishop's Hotel and Suites</title>
+    <style>
+        /* Base styles for larger screens */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1px;
+        }
+        
+        h1 {
+            font-size: 2em; /* Relative to the default font size */
+        }
+
+        header {
+            background: #0033cc;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center; /* Center the navigation items */
+            flex-wrap: nowrap; /* Allow items to wrap on smaller screens */
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px; /* Adjusted padding */
+            background: #0044cc;
+            border-radius: 5px;
+            margin: 0 3px;
+            flex: 1 0 auto; /* Allow links to grow/shrink */
+            max-width: 100px; /* Limit the maximum width of each link */
+        }
+
+        .floor {
+            margin-bottom: 20px;
+        }
+
+        .floor h2 {
+            margin: 0; /* Remove margin for full-width effect */
+            background-color: #0033cc; /* Match header background color */
+            color: #fff; /* Text color */
+            padding: 10px; /* Add some padding */
+            width: 100vw; /* Make it full width of the viewport */
+            position: relative; /* Positioning context for centering */
+            left: 50%; /* Move to center */
+            right: 50%; /* Move to center */
+            margin-left: -50vw; /* Offset by half viewport width */
+            margin-right: -50vw; /* Offset by half viewport width */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        .room-section {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0; /* Remove padding */
+        }
+
+        .room-left, .room-right {
+            width: 45%; /* Adjust width for better spacing */
+            display: flex;
+            flex-direction: column; /* Stack room boxes vertically */
+            align-items: center; /* Center align room boxes */
+        }
+
+        .room-box {
+            width: 80%; /* Full width of the container */
+            height: 35px;
+            margin: 5px; /* Margin for vertical spacing */
+            padding: 0;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s; /* Add transition */
+        }
+
+        .room-box.red {
+            background-color: red;
+        }
+
+        .room-box.green {
+            background-color: green;
+        }
+
+        .room-box:active {
+            transform: scale(0.95); /* Slightly shrink the box */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow on press */
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0044cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #0033aa;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BISHOPS HOTEL AND SUITES</h1>
+        <nav>
+            <a href="index.html">Start</a>
+            <a href="home.html">Home</a>
+            <a href="lodging.html">Lodging</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="records.html">Records</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1><B>ROOMS</B></h1>
+
+        <div class="floor">
+            <h2>2nd Floor</h2>
+            <div class="room-section">
+                <div class="room-left">
+                    <div class="room-box green" data-room="Alaska">Alaska - ₦18,000</div>
+                    <div class="room-box green" data-room="Ohio">Ohio - ₦18,000</div>
+                    <div class="room-box green" data-room="Delaware">Delaware - ₦20,000</div>
+                    <div class="room-box green" data-room="Georgia">Georgia - ₦20,000</div>
+                    <div class="room-box green" data-room="Oklahoma">Oklahoma - ₦20,000</div>
+                </div>
+                <div class="room-right">
+                    <div class="room-box green" data-room="Michigan">Michigan - ₦25,000</div>
+                    <div class="room-box green" data-room="Texas">Texas - ₦25,000</div>
+                    <div class="room-box green" data-room="Kentucky">Kentucky - ₦30,000</div>
+                    <div class="room-box green" data-room="Florida">Florida - ₦30,000</div>
+                    <div class="room-box green" data-room="New York">New York - ₦30,000</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="floor">
+            <h2>1st Floor</h2>
+            <div class="room-section">
+                <div class="room-left">
+                    <div class="room-box green" data-room="Zircon">Zircon - ₦18,000</div>
+                    <div class="room-box green" data-room="Garnets">Garnets - ₦18,000</div>
+                    <div class="room-box green" data-room="Lapis">Lapis - ₦20,000</div>
+                    <div class="room-box green" data-room="Sapphire">Sapphire - ₦20,000</div>
+                    <div class="room-box green" data-room="Coral">Coral - ₦20,000</div>
+                </div>
+                <div class="room-right">
+                    <div class="room-box green" data-room="Apatite">Apatite - ₦25,000</div>
+                    <div class="room-box green" data-room="Emerald">Emerald - ₦25,000</div>
+                    <div class="room-box green" data-room="Jade">Jade - ₦30,000</div>
+                    <div class="room-box green" data-room="Ivory">Ivory - ₦30,000</div>
+                    <div class="room-box green" data-room="Silver">Silver - ₦30,000</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="floor">
+            <h2>Ground Floor</h2>
+            <div class="room-section">
+                <div class="room-left">
+                    <div class="room-box green" data-room="Opal">Opal - ₦18,000</div>
+                    <div class="room-box green" data-room="Amber">Amber - ₦18,000</div>
+                    <div class="room-box green" data-room="Lolite">Lolite - ₦20,000</div>
+                    <div class="room-box green" data-room="Cubic">Cubic - ₦20,000</div>
+                    <div class="room-box green" data-room="Spinel">Spinel - ₦20,000</div>
+                </div>
+                <div class="room-right">
+                    <div class="room-box green" data-room="Onyx">Onyx - ₦25,000</div>
+                    <div class="room-box green" data-room="Ruby">Ruby - ₦25,000</div>
+                    <div class="room-box green" data-room="Crystal">Crystal - ₦30,000</div>
+                    <div class="room-box green" data-room="Diamond">Diamond - ₦30,000</div>
+                    <div class="room-box green" data-room="Gold">Gold - ₦30,000</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-button" onclick="refreshRooms()">Refresh Rooms</button>
+        <a href="javascript:history.back()" class="back-button">Back</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRoomStatuses();
+            document.querySelectorAll('.room-box').forEach(box => {
+                box.addEventListener('click', () => {
+                    let currentStatus = box.classList.contains('red') ? 'red' : 'green';
+                    let newStatus = currentStatus === 'green' ? 'red' : 'green';
+                    box.className = `room-box ${newStatus}`;
+                    updateRoomStatus(box.dataset.room, newStatus);
+                });
+            });
+        });
+
+        function loadRoomStatuses() {
+            const rooms = JSON.parse(localStorage.getItem('rooms')) || {};
+            document.querySelectorAll('.room-box').forEach(box => {
+                const status = rooms[box.dataset.room] || 'green'; // Default to green (available)
+                box.className = `room-box ${status}`;
+            });
+        }
+
+        function updateRoomStatus(roomName, status) {
+            const rooms = JSON.parse(localStorage.getItem('rooms')) || {};
+            rooms[roomName] = status;
+            localStorage.setItem('rooms', JSON.stringify(rooms));
+            updateHomePage();
+        }
+
+        function refreshRooms() {
+            document.querySelectorAll('.room-box').forEach(box => {
+                box.className = 'room-box green'; // Reset all rooms to available (green)
+                updateRoomStatus(box.dataset.room, 'green');
+            });
+        }
+
+        function doneCleaning() {
+            document.querySelectorAll('.room-box.red').forEach(box => {
+                box.className = 'room-box green'; // Change booked (red) to available (green)
+                updateRoomStatus(box.dataset.room, 'green');
+            });
+        }
+
+        function updateHomePage() {
+            const rooms = JSON.parse(localStorage.getItem('rooms')) || {};
+            const totalRooms = Object.keys(rooms).length;
+            const bookedRooms = Object.values(rooms).filter(status => status === 'red').length;
+            const availableRooms = totalRooms - bookedRooms;
+
+            localStorage.setItem('homeData', JSON.stringify({
+                totalRooms,
+                bookedRooms,
+                availableRooms
+            }));
+        }
+    </script>
+</body>
+</html>

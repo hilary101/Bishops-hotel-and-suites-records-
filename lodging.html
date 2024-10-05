@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lodging - Bishop's Hotel and Suites</title>
+    <style>
+      /* Base styles for larger screens */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px; /* Maximum width for larger screens */
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Styles for tablets and smaller devices */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+
+/* Styles for phones */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* Flexible images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Flexible text */
+h1 {
+    font-size: 2em; /* Relative to the default font size */
+}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #0044cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #0033aa;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0044cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #0033aa;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #0033cc;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center; /* Center the navigation items */
+            flex-wrap: nowrap; /* Allow items to wrap on smaller screens */
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px; /* Adjusted padding */
+            background: #0044cc;
+            border-radius: 5px;
+            margin: 0 3px;
+            flex: 1 0 auto; /* Allow links to grow/shrink */
+            max-width: 100px; /* Limit the maximum width of each link */
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BISHOPS HOTEL AND SUITES</h1>
+        <nav>
+            <a href="index.html">Start</a>
+            <a href="home.html">Home</a>
+            <a href="lodging.html">Lodging</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="records.html">Records</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1><B>LODGING FORM</B></h1>
+        <form id="booking-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="checkin">Check-in Date</label>
+                <input type="date" id="checkin" required>
+            </div>
+            <div class="form-group">
+                <label for="checkout">Check-out Date</label>
+                <input type="date" id="checkout" required>
+            </div>
+            <div class="form-group">
+                <label for="payment">Payment Method</label>
+                <select id="payment">
+                    <option value="cash">Cash</option>
+                    <option value="pos">POS</option>
+                    <option value="transfer">Transfer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="room">Room</label>
+                <select id="room">
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone (Optional)</label>
+                <input type="tel" id="phone">
+            </div>
+            <button type="button" class="button" onclick="bookRoom()">Book Room</button>
+            <button type="button" class="button" onclick="unbookRoom()">Unbook Room</button>
+        </form>
+        <a href="javascript:history.back()" class="back-button">Back</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            populateRoomOptions();
+        });
+
+        function populateRoomOptions() {
+            const roomSelect = document.getElementById('room');
+            const rooms = [
+                { name: 'Opal', price: '₦18,000' },
+                { name: 'Amber', price: '₦18,000' },
+                { name: 'Lolite', price: '₦20,000' },
+                { name: 'Cubic', price: '₦20,000' },
+                { name: 'Spinel', price: '₦20,000' },
+                { name: 'Onyx', price: '₦25,000' },
+                { name: 'Ruby', price: '₦25,000' },
+                { name: 'Crystal', price: '₦30,000' },
+                { name: 'Diamond', price: '₦30,000' },
+                { name: 'Gold', price: '₦30,000' },
+                { name: 'Zircon', price: '₦18,000' },
+                { name: 'Garnets', price: '₦18,000' },
+                { name: 'Lapis', price: '₦20,000' },
+                { name: 'Sapphire', price: '₦20,000' },
+                { name: 'Coral', price: '₦20,000' },
+                { name: 'Apatite', price: '₦25,000' },
+                { name: 'Emerald', price: '₦25,000' },
+                { name: 'Jade', price: '₦30,000' },
+                { name: 'Ivory', price: '₦30,000' },
+                { name: 'Silver', price: '₦30,000' },
+                { name: 'Alaska', price: '₦18,000' },
+                { name: 'Ohio', price: '₦18,000' },
+                { name: 'Delaware', price: '₦20,000' },
+                { name: 'Georgia', price: '₦20,000' },
+                { name: 'Oklahoma', price: '₦20,000' },
+                { name: 'Michigan', price: '₦25,000' },
+                { name: 'Texas', price: '₦25,000' },
+                { name: 'Kentucky', price: '₦30,000' },
+                { name: 'Florida', price: '₦30,000' },
+                { name: 'New York', price: '₦30,000' }
+            ];
+
+            rooms.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room.name;
+                option.textContent = `${room.name} - ${room.price}`;
+                roomSelect.appendChild(option);
+            });
+        }
+
+        function bookRoom() {
+            const roomName = document.getElementById('room').value;
+            const name = document.getElementById('name').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const payment = document.getElementById('payment').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!roomName || !name || !checkin || !checkout) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            const roomStatus = 'red'; // Booked
+            updateRoomStatus(roomName, roomStatus);
+
+            const booking = {
+                name,
+                checkin,
+                checkout,
+                payment,
+                phone,
+                room: roomName
+            };
+            saveBooking(booking);
+            alert(`Room ${roomName} has been booked.`);
+        }
+
+        function unbookRoom() {
+            const roomName = document.getElementById('room').value;
+            if (!roomName) {
+                alert('Please select a room.');
+                return;
+            }
+            const roomStatus = 'green'; // Available
+            updateRoomStatus(roomName, roomStatus);
+            alert(`Room ${roomName} has been unbooked.`);
+        }
+
+        function updateRoomStatus(roomName, status) {
+            const rooms = JSON.parse(localStorage.getItem('rooms')) || {};
+            rooms[roomName] = status;
+            localStorage.setItem('rooms', JSON.stringify(rooms));
+        }
+
+        function saveBooking(booking) {
+            const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.push(booking);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+        }
+    </script>
+</body>
+</html>

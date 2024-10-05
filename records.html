@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records - Bishop's Hotel and Suites</title>
+    <style>
+
+/* Base styles for larger screens */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px; /* Maximum width for larger screens */
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Base styles for larger screens */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px; /* Maximum width for larger screens */
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Styles for tablets and smaller devices */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+
+/* Styles for phones */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* Flexible images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Flexible text */
+h1 {
+    font-size: 2em; /* Relative to the default font size */
+}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #0044cc;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .back-button, .action-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0044cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover, .action-button:hover {
+            background-color: #0033aa;
+        }
+        .action-button {
+            margin-right: 10px;
+        }
+        .selected {
+            background-color: #d3d3d3;
+        }
+        header {
+            background: #0033cc;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center; /* Center the navigation items */
+            flex-wrap: nowrap; /* Allow items to wrap on smaller screens */
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px; /* Adjusted padding */
+            background: #0044cc;
+            border-radius: 5px;
+            margin: 0 3px;
+            flex: 1 0 auto; /* Allow links to grow/shrink */
+            max-width: 100px; /* Limit the maximum width of each link */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BISHOPS HOTEL AND SUITES</h1>
+        <nav>
+            <a href="index.html">Start</a>
+            <a href="home.html">Home</a>
+            <a href="lodging.html">Lodging</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="records.html">Records</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1><B>BOOKING RECORDS</B></h1>
+        <button class="action-button" onclick="deleteSelected()">Delete Selected</button>
+        <button class="action-button" onclick="refreshRecords()">Refresh Records</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Room</th>
+                    <th>Name</th>
+                    <th>Check-in Date</th>
+                    <th>Check-out Date</th>
+                    <th>Payment Method</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody id="records-table">
+                <!-- Records will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        <a href="javascript:history.back()" class="back-button">Back</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRecords();
+        });
+
+        function loadRecords() {
+            const recordsTable = document.getElementById('records-table');
+            const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+            if (bookings.length === 0) {
+                recordsTable.innerHTML = '<tr><td colspan="7">No records available.</td></tr>';
+                return;
+            }
+
+            recordsTable.innerHTML = ''; // Clear table before reloading
+
+            bookings.forEach((booking, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><input type="checkbox" class="record-checkbox" data-index="${index}"></td>
+                    <td>${booking.room}</td>
+                    <td>${booking.name}</td>
+                    <td>${booking.checkin}</td>
+                    <td>${booking.checkout}</td>
+                    <td>${booking.payment}</td>
+                    <td>${booking.phone || 'N/A'}</td>
+                `;
+                recordsTable.appendChild(row);
+            });
+        }
+
+        function deleteSelected() {
+            const checkboxes = document.querySelectorAll('.record-checkbox:checked');
+            const indexesToDelete = Array.from(checkboxes).map(cb => parseInt(cb.getAttribute('data-index')));
+
+            if (indexesToDelete.length === 0) {
+                alert('No records selected.');
+                return;
+            }
+
+            const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            const updatedBookings = bookings.filter((_, index) => !indexesToDelete.includes(index));
+            localStorage.setItem('bookings', JSON.stringify(updatedBookings));
+            loadRecords();
+        }
+
+        function refreshRecords() {
+            if (confirm('Are you sure you want to delete all records?')) {
+                localStorage.removeItem('bookings');
+                loadRecords();
+            }
+        }
+    </script>
+
+</body>
+</html>
